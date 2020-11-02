@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generator</title>
+</head>
+<body>
+  
+</body>
+<script>
+  const log = console.log
+  function *foo(x) {
+    var y = x * (yield);
+    return y;
+  }
+
+  var it = foo( 6 );
+
+  // 开始`foo(..)`
+  it.next();
+
+  var res = it.next( 7 );
+
+  res.value;		// 42
+
+</script>
+</html>

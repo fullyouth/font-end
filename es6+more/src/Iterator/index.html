@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iterator</title>
+</head>
+<body>
+  
+</body>
+<script>
+  // const arr = [1, 2, 3]
+  // const iter = arr[Symbol.iterator]()
+  // const a = iter.next()
+  // const b = iter.next()
+  // const c = iter.next()
+  // const d = iter.next()
+
+
+  // class RangIterator{
+  //   constructor (start, stop) {
+  //     this.value = start;
+  //     this.stop = stop
+  //   }
+
+  //   [Symbol.iterator] () {
+  //     return this
+  //   }
+
+  //   next () {
+  //     let value = this.value
+  //     if (value <= this.stop) {
+  //       this.value ++
+  //       return { value: value, done: false }
+  //     } else {
+  //       return { value: undefined, done: true }
+  //     }
+  //   }
+  // }
+
+  // function createInstance(start, stop) {
+  //   return new RangIterator(start, stop)
+  // }
+
+  // const rang = createInstance(1, 3)
+  // for(let value of rang) {
+  //   console.log(value)
+  // }
+
+  var it = makeIterator(['a', 'b']);
+  it.next() // { value: "a", done: false }
+  it.next() // { value: "b", done: false }
+  it.next() // { value: undefined, done: true }
+
+  function makeIterator(array) {
+    var index = 0;
+    return {
+      next: function() {
+        console.log(array[index])
+        return index < array.length ?
+          {value: array[index++], done: false} :
+          {value: undefined, done: true};
+      }
+    };
+  }
+</script>
+</html>

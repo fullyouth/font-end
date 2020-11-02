@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue</title>
+</head>
+<body>
+  
+</body>
+<script src="../../node_modules/vue-template-compiler/browser.js"></script>
+<script>
+  // object响应式
+  // 数组响应式
+  // 编译模板   with + new Function with + new Function
+  let ast = VueTemplateCompiler.compile('<div>123</div>')
+  console.log(new Function(ast.render).call(this))
+  
+  // 4. 生命钩子是怎么实现的
+  // 命名冲突  来源迷茫
+
+  // 5. nextTick
+
+  // 6.虚拟dom 跨平台
+
+  // 7 diff 双指针 + 同层比较
+
+  // $set
+
+
+</script>
+</html>

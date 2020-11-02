@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vue</title>
+</head>
+<body>
+  <div id="app">
+    <parent-comp :a='123' :b='1231'/>
+  </div>
+</body>
+<script src="./vue-2.5.11.js"></script>
+<script>
+  Vue.component('button-counter', {
+    data: function () {
+      return {
+        count: 0
+      }
+    },
+    mounted: function() {
+      console.log(this)
+    },
+    template: '<button v-on:click="count++">You clicked me {{ count }} times. {{$attrs.b}}</button>'
+  })
+  Vue.component('parent-comp', {
+    props: ['a'],
+    inheritAttrs:false,
+    data: function () {
+      return {
+        count: 0
+      }
+    },
+    mounted: function() {
+      // console.log(this.$attrs)
+    },
+    methods:{
+      
+    },
+    template: '<div>parent {{a}} {{$attrs}}<button-counter v-bind="$attrs"/></div>'
+  })
+  var vm = new Vue({
+    el:'#app'
+  })  
+</script>
+</html>

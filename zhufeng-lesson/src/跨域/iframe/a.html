@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>a</title>
+</head>
+<body>
+  <h1>A</h1>
+  <!-- <iframe id="iframe" src="http://localhost:3002/b.html" frameborder="0" onload="load()"></iframe> -->
+</body>
+<script>
+  // let frame
+  // function load() {
+  //     frame = document.getElementById('iframe');
+  //     frame.name = window.name
+  //     console.log(window)
+  //     console.log(frame.contentWindow)
+  //     frame.contentWindow.postMessage('我爱你','http://localhost:3002/b.html');
+  //     window.onmessage = function (e) {
+  //       console.log(e.data);
+  //     }
+  //   }
+  try{
+
+　　top.location.hostname;
+
+　　if (top.location.hostname != window.location.hostname) {
+
+　　　　top.location.href =window.location.href;
+
+　　}
+
+}
+
+catch(e){
+  console.log(top.location.href)
+　　top.location.href = window.location.href;
+
+}
+</script>
+</html>

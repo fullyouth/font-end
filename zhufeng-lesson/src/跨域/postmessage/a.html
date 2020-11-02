@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>a</title>
+  <style>
+    .history-box{
+      padding: 20px;
+      border: 1px solid darkgray;
+    }
+  </style>
+</head>
+<body>
+  <h1>人A</h1>
+  <h2>聊天记录--</h2>
+  <div id="history" class="history-box"></div>
+  <input type="text" id="ipt">
+  <button id="send">发送</button>
+</body>
+<script>
+  /**
+   * 
+   * @params {url} 新窗口需要载入的url地址 
+   * @params {strWindowName} 新窗口的名称 
+   * @params {strWindowFeatures}  可选参数。是一个字符串值，这个值列出了将要打开的窗口的一些特性(窗口功能和工具栏)
+   *
+   */
+
+   const url = 'http://127.0.0.1:5500/src/%E8%B7%A8%E5%9F%9F/postmessage/b.html'
+   let strWindowFeatures = `
+    menubar=yes,
+    location=yes,
+    resizable=yes,
+    scrollbars=yes,
+    status=yes
+    `;
+ 
+    let windowObjectReference = window.open(
+      url,
+      "123",
+      strWindowFeatures
+    );
+
+    const history = document.getElementById('history')
+    const sendBtn = document.getElementById('send')
+    const ipt = document.getElementById('ipt')
+
+    sendBtn.onclick = function() {
+      const text = ipt.value
+      pushDom(text)
+      windowObjectReference && windowObjectReference.postMessage(text, url);
+    }
+
+    function receiveMessage(event) {
+      const { data } = event
+      pushDom(data)
+    }
+
+    function pushDom(data) {
+      const e = document.createElement('p')
+      e.append(data)
+      history.appendChild(e)
+    }
+
+    window.onmessage = receiveMessage
+</script>
+</html>

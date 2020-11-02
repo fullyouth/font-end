@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+  <div id="app">
+
+    <div class="demo">
+      <p>全部</p>
+      <todo-add @on-confirm='handleAdd'>
+      </todo-add>
+      <ul>
+        <todo-item 
+          v-for='item in list'
+          :key='item.id' 
+          :todo='item'
+          @on-click='handleToogle(item.id)'
+        />
+      </ul>
+    </div>
+
+    <div class="demo">
+      <p>未完成</p>
+      <ul>
+        <todo-item 
+          v-for='item in unDoList'
+          :key='item.id' 
+          :todo='item'
+          @on-click='handleToogle(item.id)'
+        />
+      </ul>
+    </div>
+
+    <div class="demo">
+      <p>已完成</p>
+      <ul>
+        <todo-item 
+          v-for='item in doneList'
+          :key='item.id' 
+          :todo='item'
+          @on-click='handleToogle(item.id)'
+        />
+      </ul>
+    </div>
+
+  </div>
+</body>
+<script src="https://unpkg.com/vue@next"></script>
+<script>
+  const { createApp, ref, toRefs, reactive, computed, watchEffect, onMounted, onUnmounted } = Vue
+
+  function fetchList() {
+    return new Promise((res, rej) => {
+      setTimeout(() => {
+        res([{
+          id:'1',
+          title: '学习Vue3',
+          status: '1'
+        }])
+      }, 1000)
+    })
+  }
+
+  // todoList模块方法
+  function useList() {
+    let state = reactive({
+      list:[]
+    })
+    const unDoList = computed(() => state.list.filter(v => v.status == 1))
+    const doneList = computed(() => state.list.filter(v => v.status == 2))
+  
+    // 1 未完成 2. 完成 
+    function reversalStatus(status) {
+      return status == '1' ? '2' : '1'
+    }
+
+    onMounted(() => {
+      fetchList().then(res => {
+        state.list = res
+      })
+    }) 
+    
+    function handleAdd(item) {
+      state.list.push(item)
+    }
+
+    function handleDel(id) {
+      const idx = state.list.findIndex(item => item.id == id)
+      state.list.splice(idx, 1)
+    }
+
+    function handleToogle(id) {
+      state.list.forEach(item => {
+        if(item.id == id) {
+          item.status = reversalStatus(item.status)
+        }
+      })
+    }
+
+    return { 
+      list: state.list, 
+      unDoList,
+      doneList, 
+      handleAdd,
+      handleToogle,
+      handleDel
+    }
+  }
+
+
+  const app = createApp({
+    setup() {
+      const { list, unDoList, doneList, handleAdd, handleDel, handleToogle } = useList()
+      return { 
+        list, 
+        unDoList,
+        doneList, 
+        handleAdd,
+        handleDel,
+        handleToogle
+      }
+    }
+  })
+
+  app.component('todo-item', {
+    template: `
+      <li 
+        :class="{'line-through': todo.status=='2'}" 
+        @click='handleClick'
+      >
+        {{ todo.title }}
+      </li>
+    `,
+    props:['todo', 'on-click'],
+    methods:{
+      handleClick() {
+        this.$emit('on-click', this.todo.id)
+      }
+    }
+  })
+
+  app.component('todo-add', {
+    template: `
+      <div>
+        描述<input ref='title'/>
+        <button @click='handleConfirm'>添加</button>
+      </div>
+    `,
+    props:['on-confirm'],
+    methods:{
+      handleConfirm() {
+        const title = this.$refs['title'].value
+        const data = {
+          id: Date.parse(new Date()), 
+          title,
+          status: '1',
+        }
+        this.$emit('on-confirm', data)
+        this.$refs['title'].value = ''
+      }
+    }
+  })
+
+  app.mount('#app')
+
+
+</script>
+</html>

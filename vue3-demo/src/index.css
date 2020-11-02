@@ -1,0 +1,14 @@
+.demo {
+  font-family: sans-serif;
+  border: 1px solid rgba(63, 56, 56, 43%);
+  border-radius: 2px;
+  padding: 20px 30px;
+  margin-top: 1em;
+  margin-bottom: 40px;
+  user-select: none;
+  overflow-x: auto;
+}
+
+.line-through{
+  text-decoration: line-through;
+}

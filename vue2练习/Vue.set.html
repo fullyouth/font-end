@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vue</title>
+</head>
+<body>
+  <div id="app"></div>
+</body>
+<script src="./vue-2.5.11.js"></script>
+<script>
+  var app = new Vue({
+    template: '<div><li v-for="item in alias">{{item}}</li></div>',
+    data: function () {
+      return {
+        firstName: 'Walter',
+        lastName: 'White',
+        alias: [1,2,3,4]
+      }
+    }
+  })
+  console.log(app)
+  Vue.set(app.alias,4,2)
+  app.$mount('#app')
+</script>
+</html>

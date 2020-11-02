@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Symbol</title>
+</head>
+<body>
+  
+</body>
+<script>
+  // const a = Symbol()
+  // console.log(typeof a)
+
+  // const obj1 = {
+  //   name: 'zhq',
+  //   toString() {
+  //     return this.name
+  //   }
+  // }
+  // const b = Symbol(obj1)
+  // console.log(obj1.toString())
+  // console.log(b)
+
+  // // console.log(Symbol(Symbol()))
+  // console.log(Symbol('123').toString())
+  // console.log(String(Symbol('123')))
+  // console.log(!!(Symbol('123')))
+  // console.log(Number(Symbol('123')))
+
+  // const a = {
+  //   name: '123',
+  //   [Symbol('ss')]: 'ss'
+  // }
+  // console.log(a)
+
+  // for (let key in a) {
+  //   console.log(key)
+  // }
+
+  // console.log(Object.getOwnPropertySymbols(a))
+  // console.log(Reflect.ownKeys(a))
+
+  // const S = {
+  //   ['PageSign']: () => {
+  //     console.log(1)
+  //   }
+  // }
+
+  // const b = {
+  //   getName: () => {
+  //     S.PageSign()
+  //   }
+  // }
+  // console.log(b.getName())
+
+    // class A {
+    //   [Symbol.hasInstance] = () => false
+    //   static [Symbol.hasInstance] = () => true
+    // }
+    // const a = new A()
+    // console.log(([]) instanceof A)
+
+    // class Even {
+    //   static [Symbol.hasInstance] = (obj) => {
+    //     return Number(obj) % 2 === 0;
+    //   }
+    // }
+    // x = new Even()
+    // console.log(1 instanceof Even);//false
+    // console.log(2 instanceof Even);//true
+    // console.log(x instanceof Even);//true 原本判断x是否为Even的实例的方法，被改成了传入的数字%2===0。所以此刻是false。
+
+    // const S = {
+    //   hasInstance: Symbol('Symbol.hasInstance'),
+    //   hasInstance: Symbol('Symbol.hasInstance'),
+    //   hasInstance: Symbol('Symbol.hasInstance'),
+    // }
+
+    // class A {
+    //   [S.hasInstance]() {
+
+    //   }
+
+    //   [s.bb]() {
+
+    //   }
+    // }
+
+    var triangle = {a: 1, b: 2, c: 3};
+
+    function ColoredTriangle() {
+      this.color = 'red';
+    }
+
+    ColoredTriangle.prototype = triangle; 
+    const a = new ColoredTriangle()
+    console.log(a)
+
+    Object.keys(a)
+</script>
+</html>

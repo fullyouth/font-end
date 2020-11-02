@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MutationObserver</title>
+</head>
+<body>
+  <div id="name">
+    <p>张浩琦</p>
+  </div>
+</body>
+<script>
+  // MutationObserver 微任务
+  const name = document.getElementById('name')
+  const observer = new MutationObserver(function(...args) {
+    console.log(args)
+  })
+  observer.observe(name, { attributes: true, childList: true, subtree: true })
+
+  // Promise.resolve().then(() => {
+  //   observer.disconnect();
+  // }) 
+  setTimeout(() => {
+    console.log(Date.now())
+    observer.disconnect();
+  }, 0)
+  name.setAttribute('class','123');
+</script>
+</html>

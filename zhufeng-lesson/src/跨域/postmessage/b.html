@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>b</title>
+  <style>
+    .history-box{
+      padding: 20px;
+      border: 1px solid darkgray;
+    }
+  </style>
+</head>
+<body>
+  <h1>人b</h1>
+  <h2>聊天记录--</h2>
+  <div id="history" class="history-box"></div>
+  <input type="text" id="ipt">
+  <button id="send">发送</button>
+</body>
+<script>
+  const history = document.getElementById('history')
+  const sendBtn = document.getElementById('send')
+  const ipt = document.getElementById('ipt')
+
+  let sourceWindow = null
+  let url = ''
+  function receiveMessage(event) {
+    console.log(event)
+    sourceWindow = event.source
+    url = sourceWindow.location.href
+
+    const { data } = event
+    pushDom(data)
+  }
+  window.onmessage = receiveMessage
+  function pushDom(data) {
+      const e = document.createElement('p')
+      e.append(data)
+      history.appendChild(e)
+    }
+  sendBtn.onclick = function() {
+    const text = ipt.value
+    pushDom(text)
+    sourceWindow && sourceWindow.postMessage(text, url);
+  }
+</script>
+</html>
