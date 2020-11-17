@@ -7,8 +7,10 @@
 </head>
 <body>
   <div id="app">
-    <h1>{{name}}</h1>
-    <h1>{{reversedMessage}}</h1>
+    <h1 v-on:click.native='click'>{{name}}</h1>
+    <h1 v-on:click.once='click'>{{reversedMessage}}</h1>
+    <h1 v-on:click.capture='click'>{{reversedMessage}}</h1>
+    <h1 v-on:click.self='click'>{{reversedMessage}}</h1>
   </div>
 </body>
 <script src="./vue-2.5.11.js"></script>
@@ -22,8 +24,12 @@
       reversedMessage: function () {
         return this.name.split('').reverse().join('')
       }
+    },
+    methods:{
+      click(e){}
     }
   })
+  debugger
   setTimeout(() => {
     vm.name = '123'
   }, 1000)

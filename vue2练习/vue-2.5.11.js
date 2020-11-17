@@ -10671,10 +10671,12 @@ var createCompiler = createCompilerCreator(function baseCompile (
   options
 ) {
   var ast = parse(template.trim(), options);
+  debugger
   if (options.optimize !== false) {
     optimize(ast, options);
   }
   var code = generate(ast, options);
+  debugger
   return {
     ast: ast,
     render: code.render,
