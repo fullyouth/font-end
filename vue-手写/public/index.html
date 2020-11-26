@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>vue</title>
+  </head>
+  <body>
+    <div id='app'></div>
+  </body>
+  <script src='../dist/vue.js'></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          name: 'zhq',
+          age: 18
+        }
+      },
+      render() {
+        with(this){return _c('div',{staticClass:"name"},[_v("hello world!\n"),_v("123")])}
+      }
+    })
+  </script>
+</html>
