@@ -19,18 +19,23 @@
 /*! runtime requirements: __webpack_require__, __webpack_require__.r, __webpack_exports__, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util */ \"./src/util.js\");\n\nlet a = 1\nlet b = 2\nconsole.log((0,_util__WEBPACK_IMPORTED_MODULE_0__.sum)(a, b))\ndocument.write(title.default);\n\n//# sourceURL=webpack://webpack-learn/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util */ \"./src/util.js\");\n\nlet a = 1\nlet b = 2\n;(0,_util__WEBPACK_IMPORTED_MODULE_0__.sum)(a, b)\ndocument.write(title.default);\n\nconsole.log(false)\nconsole.log(process.env.EEE)\n\n//# sourceURL=webpack://webpack-learn/./src/index.js?");
 
 /***/ }),
 
 /***/ "./src/util.js":
-((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/*!*********************!*\
+  !*** ./src/util.js ***!
+  \*********************/
+/*! namespace exports */
+/*! export sum [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
-__webpack_require__.d(__webpack_exports__, {
-  sum: () => sum });
-  const sum = (a, b) => a + b
-})
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"sum\": () => /* binding */ sum\n/* harmony export */ });\nconst sum = (a, b) => a + b\n\n//# sourceURL=webpack://webpack-learn/./src/util.js?");
+
+/***/ })
 
 /******/ 	});
 /************************************************************************/

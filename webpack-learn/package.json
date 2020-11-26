@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack"
+    "build": "NODE_ENV_1=false webpack --mode development --env prod=e --env mode=4 --config webpack.config.js"
   },
   "keywords": [],
   "author": "",
